@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS `flowershop`
+  DEFAULT CHARACTER SET utf8;
+USE `flowershop`;
+
+DROP TABLE IF EXISTS `flowers`;
+CREATE TABLE IF NOT EXISTS `flowers` (
+  `ID`        INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`     VARCHAR(50) DEFAULT NULL,
+  `price`     INT(11) DEFAULT NULL,
+  `flowerBankId`  INT(11)    NOT NULL
+)
+ENGINE =InnoDB
+DEFAULT CHARSET =utf8;
+
+DROP TABLE IF EXISTS `flowerbanks`;
+CREATE TABLE IF NOT EXISTS `flowerbanks` (
+  `ID`        INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `flowerId`  INT(11)    NOT NULL,
+  `count`     INT(11) DEFAULT NULL
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
+
+ALTER TABLE `flowerbanks` ADD CONSTRAINT `fk_flowerbank_flower` FOREIGN KEY (`flowerId`) REFERENCES `flowers` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
