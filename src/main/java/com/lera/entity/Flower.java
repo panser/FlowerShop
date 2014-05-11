@@ -1,20 +1,20 @@
 package com.lera.entity;
 
-import com.lera.entity.notPersistence.Goods;
-import com.lera.entity.notPersistence.Plant;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by panser on 5/10/14.
  */
 @Entity
 @Table(name = "flowers")
-public class Flower extends Plant implements Goods, Serializable{
+public class Flower{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Integer id;
+
     protected Integer price;
+    protected String name;
 
     @OneToOne(mappedBy = "flower", cascade = CascadeType.ALL)
     private FlowerBank flowerBank;
@@ -27,15 +27,28 @@ public class Flower extends Plant implements Goods, Serializable{
         this.flowerBank = flowerBank;
     }
 
-    public void setPrice(Integer price) {
-        if (price >= 0)
-            this.price = price;
-        else
-            throw new IllegalArgumentException("Not supported negative value");
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getPrice() {
-        return this.price;
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Flower() {

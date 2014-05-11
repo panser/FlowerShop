@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "flowerbanks")
-public class FlowerBank implements Serializable {
+public class FlowerBank {
     @Id
     @GenericGenerator(name = "generator", strategy = "foreign", parameters = @org.hibernate.annotations.Parameter(name = "property", value = "flower"))
     @GeneratedValue(generator = "generator")

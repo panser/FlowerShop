@@ -3,7 +3,6 @@ package com.lera.controller;
 import com.lera.entity.Flower;
 import com.lera.entity.FlowerBank;
 import com.lera.service.FlowerBankService;
-import com.lera.service.FlowerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class FlowerBankController {
     @Autowired
     FlowerBankService flowerBankService;
-    @Autowired
-    FlowerService flowerService;
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -45,7 +42,6 @@ public class FlowerBankController {
         flower.setFlowerBank(flowerBank);
         flowerBank.setFlower(flower);
 
-//        flowerService.merge(flower);
         flowerBankService.save(flowerBank);
 
         return "redirect:/flowerBank/do";
