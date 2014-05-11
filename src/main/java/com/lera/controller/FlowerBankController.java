@@ -3,16 +3,17 @@ package com.lera.controller;
 import com.lera.entity.Flower;
 import com.lera.entity.FlowerBank;
 import com.lera.service.FlowerBankService;
+import com.lera.service.FlowerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 /**
  * Created by panser on 5/10/14.
@@ -23,23 +24,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FlowerBankController {
     @Autowired
     FlowerBankService flowerBankService;
+    @Autowired
+    FlowerService flowerService;
 
-    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
-    public String listFlowerBank(Model model){
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
+    @RequestMapping(value = {"/do"}, method = RequestMethod.GET)
+    public String doFlowerBankGET(Model model){
         model.addAttribute("flowerBanks", flowerBankService.findAll());
-        return "flowerBank/listFlowerBanks";
+        model.addAttribute("flower", new Flower());
+        return "flowerBank/doFlowerBanks";
     }
 
-    @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
-    public String addFlowerBank(Model model){
-        model.addAttribute("flower", new Flower());
-        return "flowerBank/addFlower";
-    }
-    @RequestMapping(value = {"/add"}, method = RequestMethod.POST)
-    public String addFlower(@ModelAttribute("flower") Flower flower){
-        FlowerBank flowerBank = new FlowerBank(flower,1);
+    @RequestMapping(value = {"/do"}, method = RequestMethod.POST)
+    public String doFlowerBankPOST(@ModelAttribute("flower") Flower flower){
+        log.debug(flower.toString());
+        FlowerBank flowerBank = new FlowerBank();
+        flowerBank.setCount(1);
+
+        flower.setFlowerBank(flowerBank);
+        flowerBank.setFlower(flower);
+
+//        flowerService.merge(flower);
         flowerBankService.save(flowerBank);
-        return "redirect:/flowerBank/listFlowerBanks";
+
+        return "redirect:/flowerBank/do";
     }
 
 }

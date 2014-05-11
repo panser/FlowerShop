@@ -1,4 +1,4 @@
-package com.lera.entity.notEntity;
+package com.lera.entity.notPersistence;
 
 /**
  * Created by panser on 5/10/14.

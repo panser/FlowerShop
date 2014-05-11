@@ -1,28 +1,31 @@
 package com.lera.entity;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by panser on 5/10/14.
  */
 @Entity
 @Table(name = "flowerbanks")
-public class FlowerBank {
+public class FlowerBank implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "generator", strategy = "foreign", parameters = @org.hibernate.annotations.Parameter(name = "property", value = "flower"))
+    @GeneratedValue(generator = "generator")
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "flowerId", referencedColumnName = "id")
-    private Flower flower;
     private Integer count;
 
-    public FlowerBank() {
-    }
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Flower flower;
 
-    public FlowerBank(Flower flower, Integer count) {
-        this.flower = flower;
-        this.count = count;
+    public FlowerBank() {
     }
 
     public Integer getId() {
@@ -48,4 +51,6 @@ public class FlowerBank {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+
 }

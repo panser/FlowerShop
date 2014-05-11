@@ -1,8 +1,10 @@
 package com.lera.entity;
 
-import com.lera.entity.notEntity.Plant;
+import com.lera.entity.notPersistence.Goods;
+import com.lera.entity.notPersistence.Plant;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,18 +13,19 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "flowers")
-public class Flower extends Plant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Flower extends Plant implements Goods, Serializable{
     protected Integer price;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "flowerBankId", referencedColumnName = "id")
+    @OneToOne(mappedBy = "flower", cascade = CascadeType.ALL)
     private FlowerBank flowerBank;
 
-//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "resumeId", fetch = FetchType.LAZY)
-//    private Set<WorkExpEntity> workExpCollection = new HashSet<>();
+    public FlowerBank getFlowerBank() {
+        return flowerBank;
+    }
+
+    public void setFlowerBank(FlowerBank flowerBank) {
+        this.flowerBank = flowerBank;
+    }
 
     public void setPrice(Integer price) {
         if (price >= 0)
@@ -35,11 +38,15 @@ public class Flower extends Plant {
         return this.price;
     }
 
-    public Flower(String name, Integer price){
-        setName(name);
-        setPrice(price);
+    public Flower() {
     }
 
-    public Flower() {
+    @Override
+    public String toString() {
+        return "Flower{" +
+                "id=" + id +
+                ", price=" + price +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
