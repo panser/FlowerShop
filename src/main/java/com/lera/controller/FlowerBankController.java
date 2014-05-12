@@ -42,11 +42,11 @@ public class FlowerBankController {
         FlowerBank flowerBank = new FlowerBank();
         flowerBank.setCount(1);
 
-        flower.setFlowerBank(flowerBank);
-        flowerBank.setFlower(flower);
+        Flower flowerNew = flowerService.merge(flower);
+//        flower.setFlowerBank(flowerBank);
+        flowerBank.setFlower(flowerNew);
 
-//        flowerService.merge(flower);
-        flowerBankService.save(flowerBank);
+        flowerBankService.merge(flowerBank);
 
         return "redirect:/flowerBank/do";
     }
