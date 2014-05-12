@@ -13,6 +13,6 @@ public interface FlowerBankDAO {
     FlowerBank find(Integer id);
     List<FlowerBank> findAll();
     FlowerBank merge(FlowerBank flowerBank);
-    FlowerBank save(FlowerBank flowerBank);
+    Integer save(FlowerBank flowerBank);
     void delete(FlowerBank flowerBank);
 }

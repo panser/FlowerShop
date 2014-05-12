@@ -42,7 +42,7 @@ public class FlowerBankController {
         flower.setFlowerBank(flowerBank);
         flowerBank.setFlower(flower);
 
-        flowerBankService.save(flowerBank);
+        flowerBankService.merge(flowerBank);
 
         return "redirect:/flowerBank/do";
     }

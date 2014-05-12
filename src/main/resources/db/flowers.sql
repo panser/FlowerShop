@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS `flowers` (
 #   `flowerBank`  INT(11)    NOT NULL,
   `price`     INT(11) DEFAULT NULL
 )
-ENGINE =InnoDB
-DEFAULT CHARSET =utf8;
+  ENGINE =InnoDB
+  DEFAULT CHARSET =utf8;
 
 CREATE TABLE IF NOT EXISTS `flowerbanks` (
   `ID`        INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -25,6 +25,6 @@ CREATE TABLE IF NOT EXISTS `flowerbanks` (
   DEFAULT CHARSET =utf8;
 
 
-  ALTER TABLE `flowerbanks` ADD CONSTRAINT `fk_flowerbank_flower` FOREIGN KEY (`id`) REFERENCES `flowers` (`id`)
+ALTER TABLE `flowerbanks` ADD CONSTRAINT `fk_flowerbank_flower` FOREIGN KEY (`id`) REFERENCES `flowers` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE;
