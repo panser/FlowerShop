@@ -16,7 +16,7 @@ import java.util.Set;
 public class Flower extends Plant implements Goods, Serializable{
     protected Integer price;
 
-    @OneToOne(mappedBy = "flower", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "flower")
     private FlowerBank flowerBank;
 
     public FlowerBank getFlowerBank() {

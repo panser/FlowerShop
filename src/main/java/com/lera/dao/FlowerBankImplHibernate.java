@@ -41,12 +41,6 @@ public class FlowerBankImplHibernate implements FlowerBankDAO {
     }
 
     @Override
-    public FlowerBank save(FlowerBank flowerBank) {
-        FlowerBank flowerBankNew = (FlowerBank)sessionFactory.getCurrentSession().save(flowerBank);
-        return flowerBankNew;
-    }
-
-    @Override
     public void delete(FlowerBank flowerBank) {
         sessionFactory.getCurrentSession().delete(flowerBank);
     }

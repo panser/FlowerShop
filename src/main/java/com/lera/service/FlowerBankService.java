@@ -36,12 +36,6 @@ public class FlowerBankService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public FlowerBank save(FlowerBank flowerBank) {
-        FlowerBank flowerBankNew = flowerBankDAO.save(flowerBank);
-        return flowerBankNew;
-    }
-
-    @Transactional(rollbackFor = Exception.class)
     public void delete(FlowerBank flowerBank) {
         flowerBankDAO.delete(flowerBank);
     }
