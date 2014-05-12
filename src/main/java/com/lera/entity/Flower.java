@@ -16,7 +16,7 @@ public class Flower{
     protected Integer price;
     protected String name;
 
-    @OneToOne(mappedBy = "flower", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "flower")
     private FlowerBank flowerBank;
 
     public FlowerBank getFlowerBank() {

@@ -15,14 +15,13 @@ import java.io.Serializable;
 @Table(name = "flowerbanks")
 public class FlowerBank {
     @Id
-    @GenericGenerator(name = "generator", strategy = "foreign", parameters = @org.hibernate.annotations.Parameter(name = "property", value = "flower"))
-    @GeneratedValue(generator = "generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer count;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "flower_id")
     private Flower flower;
 
     public FlowerBank() {
@@ -52,5 +51,12 @@ public class FlowerBank {
         this.count = count;
     }
 
-
+    @Override
+    public String toString() {
+        return "FlowerBank{" +
+                "id=" + id +
+                ", count=" + count +
+                ", flower=" + flower +
+                '}';
+    }
 }

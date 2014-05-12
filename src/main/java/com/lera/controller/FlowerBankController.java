@@ -39,7 +39,7 @@ public class FlowerBankController {
         FlowerBank flowerBank = new FlowerBank();
         flowerBank.setCount(1);
 
-        flower.setFlowerBank(flowerBank);
+//        flower.setFlowerBank(flowerBank);
         flowerBank.setFlower(flower);
 
         flowerBankService.merge(flowerBank);
