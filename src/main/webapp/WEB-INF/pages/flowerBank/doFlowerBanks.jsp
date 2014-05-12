@@ -1,4 +1,5 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -8,7 +9,15 @@
 <body>
 <code>
     <h1>List FlowerBanks:</h1>
-    ${flowerBanks}
+    <table>
+        <c:forEach items="${flowerBanks}" var="flowerBank">
+            <tr>
+                <td><c:out value="${flowerBank.count}"/> </td>
+                <td><c:out value="${flowerBank.flower.name}"/> </td>
+                <td><c:out value="${flowerBank.flower.price}"/> </td>
+            </tr>
+        </c:forEach>
+    </table>
     <tr/>
 
     <h1>Add Flower:</h1>
