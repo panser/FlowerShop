@@ -1,20 +1,18 @@
 package com.lera.entity;
 
-import com.lera.entity.notPersistence.Goods;
+import com.lera.entity.notPersistence.Colored;
 import com.lera.entity.notPersistence.Plant;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by panser on 5/10/14.
  */
 @Entity
 @Table(name = "flowers")
-public class Flower extends Plant implements Goods, Serializable{
-    protected Integer price;
+public class Flower extends Plant implements Colored, Serializable{
+    protected String color;
 
     @OneToOne(mappedBy = "flower")
     private FlowerBank flowerBank;
@@ -27,15 +25,14 @@ public class Flower extends Plant implements Goods, Serializable{
         this.flowerBank = flowerBank;
     }
 
-    public void setPrice(Integer price) {
-        if (price >= 0)
-            this.price = price;
-        else
-            throw new IllegalArgumentException("Not supported negative value");
+    @Override
+    public String getColor() {
+        return color;
     }
 
-    public Integer getPrice() {
-        return this.price;
+    @Override
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Flower() {
@@ -44,9 +41,8 @@ public class Flower extends Plant implements Goods, Serializable{
     @Override
     public String toString() {
         return "Flower{" +
-                "id=" + id +
-                ", price=" + price +
-                ", name='" + name + '\'' +
+                "color='" + color + '\'' +
+                "name='" + getName() + '\'' +
                 '}';
     }
 }

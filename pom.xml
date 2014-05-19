@@ -14,6 +14,7 @@
         <mysql-connector.version>5.1.29</mysql-connector.version>
         <slf4j.version>1.7.2</slf4j.version>
         <logback.version>1.0.10</logback.version>
+        <springframework.security.version>3.2.3.RELEASE</springframework.security.version>
     </properties>
 
     <dependencies>
@@ -120,6 +121,27 @@
             <version>1.8.0</version>
         </dependency>
 -->
+        <!--SPRING SECURITY-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${springframework.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springframework.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springframework.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${springframework.security.version}</version>
+        </dependency>
 
     </dependencies>
 

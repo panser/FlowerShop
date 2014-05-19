@@ -1,12 +1,9 @@
 package com.lera.entity;
 
-import org.hibernate.annotations.*;
-
 import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * Created by panser on 5/10/14.
@@ -23,6 +20,10 @@ public class FlowerBank {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "flower_id")
     private Flower flower;
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bouquet_id", referencedColumnName = "id")
+    private Bouquet bouquet;
 
     public FlowerBank() {
     }

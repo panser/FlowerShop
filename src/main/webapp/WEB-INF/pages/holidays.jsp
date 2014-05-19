@@ -34,7 +34,7 @@
                         document.getElementById("logoutForm").submit();
                     }
                 </script>
-                <c:url value="/logout" var="logoutUrl" />
+                    <c:url value="/logout" var="logoutUrl" />
             <form action="${logoutUrl}" method="post" id="logoutForm">
             </form>
             </p>
@@ -44,27 +44,27 @@
 
 
 <code>
-    <h1>List FlowerBanks:</h1>
+    <h1>List Holidays:</h1>
     <table>
-        <c:forEach items="${flowerBanks}" var="flowerBank">
+        <c:forEach items="${holidays}" var="holiday">
             <tr>
-                <td><c:out value="${flowerBank.count}"/> </td>
-                <td><c:out value="${flowerBank.flower.name}"/> </td>
-                <td><c:out value="${flowerBank.flower.color}"/> </td>
+                <td><c:out value="${holiday.date}"/> </td>
+                <td><c:out value="${holiday.description}"/> </td>
             </tr>
         </c:forEach>
     </table>
     <tr/>
 
-    <h1>Add Flower:</h1>
+<%--
+    <h1>Add Holiday:</h1>
     <div>
-        <sf:form name="f" method="POST" modelAttribute="flower">
+        <sf:form name="f" method="POST" modelAttribute="holiday">
             <fieldset>
-                <sf:label path="name">Flower Name: </sf:label>
-                <sf:input path="name" id="name"/>
+                <sf:label path="date">Holiday date: </sf:label>
+                <sf:input path="date" id="date"/>
                 <p/>
-                <sf:label path="color">Flower color: </sf:label>
-                <sf:input path="color" id="color"/>
+                <sf:label path="description">Holiday description: </sf:label>
+                <sf:input path="description" id="description"/>
                 <p/>
                 <br/>
 
@@ -73,6 +73,7 @@
         </sf:form>
 
     </div>
+--%>
 </code>
 </body>
 </html>
